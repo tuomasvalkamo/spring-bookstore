@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -54,6 +55,7 @@ public class BookController {
 
 	// Delete existing book
 	@GetMapping("/delete/{id}")
+	@PreAuthorize("hasRole('ADMIN')")
 	public String deleteBook(@PathVariable("id") long bookId, Model model) {
 		repository.deleteById(bookId);
 
