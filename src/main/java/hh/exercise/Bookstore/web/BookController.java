@@ -1,11 +1,15 @@
 package hh.exercise.Bookstore.web;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import hh.exercise.Bookstore.domain.Book;
 import hh.exercise.Bookstore.domain.BookRepository;
@@ -56,5 +60,17 @@ public class BookController {
 		model.addAttribute("book", repository.findById(bookId));
 		model.addAttribute("categories", catRepository.findAll());
 		return "editbook";
+	}
+
+	// RESTful service to get all books
+	@GetMapping("/books")
+	public @ResponseBody List<Book> bookListRest() {
+		return (List<Book>) repository.findAll();
+	}
+
+	// RESTful service to get book by id
+	@GetMapping("/book/{id}")
+	public @ResponseBody Optional<Book> findBookRest(@PathVariable("id") Long bookId) {
+		return repository.findById(bookId);
 	}
 }
