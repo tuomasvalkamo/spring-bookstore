@@ -30,6 +30,12 @@ public class BookController {
 
 		return "booklist";
 	}
+	
+	// Login page
+	@GetMapping("/login")
+	public String login(Model model) {
+		return "login";
+	}
 
 	// Add book page
 	@GetMapping("/addbook")
