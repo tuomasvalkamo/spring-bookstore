@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 public class Book {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Long id;
 	private String title;
 	private String author;
 	private String year;
@@ -36,11 +36,11 @@ public class Book {
 		// TODO Auto-generated constructor stub
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

@@ -56,7 +56,7 @@ public class BookController {
 	// Delete existing book
 	@GetMapping("/delete/{id}")
 	@PreAuthorize("hasRole('ADMIN')")
-	public String deleteBook(@PathVariable("id") long bookId, Model model) {
+	public String deleteBook(@PathVariable("id") Long bookId, Model model) {
 		repository.deleteById(bookId);
 
 		return "redirect:../booklist";
@@ -64,7 +64,7 @@ public class BookController {
 
 	// Edit existing book
 	@GetMapping("/edit/{id}")
-	public String editBook(@PathVariable("id") long bookId, Model model) {
+	public String editBook(@PathVariable("id") Long bookId, Model model) {
 		model.addAttribute("book", repository.findById(bookId));
 		model.addAttribute("categories", catRepository.findAll());
 		return "editbook";
